@@ -3,10 +3,10 @@
   <channel>
     <title>Premsai blogs</title>
     <description>Software Developer</description>
-    <link>http://sajjapremsai.github.io/Blogs/</link>
-    <atom:link href="http://sajjapremsai.github.io/Blogs/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 26 Jun 2025 19:26:11 +0000</pubDate>
-    <lastBuildDate>Thu, 26 Jun 2025 19:26:11 +0000</lastBuildDate>
+    <link>http://sajjapremsai.github.io/blogs/</link>
+    <atom:link href="http://sajjapremsai.github.io/blogs/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 26 Jun 2025 19:31:05 +0000</pubDate>
+    <lastBuildDate>Thu, 26 Jun 2025 19:31:05 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -57,8 +57,8 @@
 &lt;hr /&gt;
 </description>
         <pubDate>Thu, 26 Jun 2025 14:30:00 +0000</pubDate>
-        <link>http://sajjapremsai.github.io/Blogs/2025/06/26/csrf-attacks/</link>
-        <guid isPermaLink="true">http://sajjapremsai.github.io/Blogs/2025/06/26/csrf-attacks/</guid>
+        <link>http://sajjapremsai.github.io/blogs/2025/06/26/csrf-attacks/</link>
+        <guid isPermaLink="true">http://sajjapremsai.github.io/blogs/2025/06/26/csrf-attacks/</guid>
         
         
       </item>
