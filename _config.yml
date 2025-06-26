@@ -2,8 +2,8 @@
 title: Premsai blogs
 email: 
 description: "Software Developer"
-baseurl: ""
-url: "http://sajjapremsai.github.io/Blogs"
+baseurl: "/blogs"
+url: "http://sajjapremsai.github.io"
 twitter_username: Premsai_Sajja
 github_username:  SajjaPremsai
 
