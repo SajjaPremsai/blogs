@@ -1,7 +1,7 @@
 # Site settings
 title: Premsai blogs
 email: 
-description: "Software Developer"
+description: "Technical explorations in web development, backend systems, AI/ML, and developer tooling — built by a developer, for developers."
 baseurl: "/blogs"
 url: "http://sajjapremsai.github.io"
 twitter_username: Premsai_Sajja
