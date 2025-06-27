@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Advanced CSRF- How to Bypass SameSite Cookie Protections"
-date: 2025-06-28 20:00:00 +12:49
+title: "Advanced CSRF: How to Bypass SameSite Cookie Protections"
+date: 2025-06-28 00:30:00 +05:30
 comments: true
 excerpt: "SameSite cookies are a key browser defense against CSRF attacks, but they’re not foolproof. This post dives into how attackers can bypass SameSite restrictions using real-world techniques and browser behaviors."
 ---
