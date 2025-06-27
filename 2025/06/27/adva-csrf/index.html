@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Premsai blogs</title>
+    <title>Advanced CSRF: How to Bypass SameSite Cookie Protections</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Technical explorations in web development, backend systems, AI/ML, and developer tooling — built by a developer, for developers.">
-    <link rel="canonical" href="http://sajjapremsai.github.io/blogs/">
+    <link rel="canonical" href="http://sajjapremsai.github.io/blogs/2025/06/27/adva-csrf/">
     <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Premsai blogs posts" />
 
     <!-- Custom CSS -->
@@ -69,28 +69,44 @@
 
     <div class="page-content">
       <div class="wrap">
-      <div class="home">
+      <div class="post">
+
+  <header class="post-header">
+    <h1>Advanced CSRF: How to Bypass SameSite Cookie Protections</h1>
+    <p class="meta">Jun 27, 2025</p>
+  </header>
+
+  <article class="post-content">
+  <p>Samesite is the browser security mechanism that determine when a website’s cookies are  included in the requesting originating from another websites. Since 2021 the chrome makes the lax as the default for samesite restrictions.</p>
+
+<h4 id="what-is-the-site-in-context-of-samesite">What is the site in context of samesite</h4>
+
+<p>A site is defined as the top level domain (TLD), usually something like <code class="language-plaintext highlighter-rouge">.net</code> or .<code class="language-plaintext highlighter-rouge">com</code>. When determining whether a request is same-site or not, the URL schema also takes into consideration. This means that a link from <code class="language-plaintext highlighter-rouge">http://mydomain.com</code> to <code class="language-plaintext highlighter-rouge">https://mydomain.com</code> considered or treated as the cross-site by most of the browsers.</p>
+
+<p><img src="/assets/websecurity/site.png" alt="site" /></p>
+
+<h4 id="site-vs-origin">Site vs Origin</h4>
+
+<p>The difference between the site and the origin is their scope. The site describes multiple domains whereas the origin only describes one. It not use these words interchangeably which makes serious security implications.</p>
+
+<ul>
+  <li>So when we talk about the like site it is the combination of scheme, TLD and TLD+1. so it will have multiple subdomains.</li>
+  <li>Whereas the origin the combination of ip and port which makes unique and single one.</li>
+</ul>
+
+<p><img src="/assets//websecurity/sitevsorigin.png" alt="Origin vs Site" /></p>
+
+<h2 id="understanding-the-working-of-samesite">Understanding the working of SameSite</h2>
+
+
+  </article>
+
+  <!-- mathjax -->
   
-  <ul class="posts">
-    
-      <li>
-        <span class="post-date">Jun 27, 2025</span>
-        <a class="post-link" href="/blogs/2025/06/27/adva-csrf/">Advanced CSRF: How to Bypass SameSite Cookie Protections</a>
-        <br>
-        SameSite cookies are a key browser defense against CSRF attacks, but they’re not foolproof. This post dives into how attackers can bypass SameSite restrictions using real-world techniques and browser behaviors.
-      </li>
-    
-      <li>
-        <span class="post-date">Jun 27, 2025</span>
-        <a class="post-link" href="/blogs/2025/06/27/csrf-attacks/">CSRF (Cross-Site Request Forgery)</a>
-        <br>
-        CSRF (Cross-Site Request Forgery) is a type of attack that tricks a logged-in user into making unintended requests. Let's explore how it works and how to defend against it.
-      </li>
-    
-  </ul>
+  
 
+  
 </div>
-
       </div>
     </div>
 
