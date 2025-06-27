@@ -129,4 +129,8 @@ email=trumpwithb2bommer.com
 - This one usually happen when we use different framework or library for session ID and csrf token.
 - However, setting a cookie with the `HttpOnly` flag means JavaScript cannot access it. This helps mitigate the risk of token theft via XSS. But it will happens when the sites under same domain
 
+#### CSRF token is simply duplicated in a cookie
 
+- So in this the token is generated in the server and send to the user as cookie and also in the form in hidden. So when we requested the server just check the cookie and form csrf token is same or not.
+- If not reject the request. Here is the catch if the attacker get his csrf token and placed in the cookie and form. The changing of cookie value only happens when cookie has property `sameOrigin` as none or the website is in subdomain. Which makes easy to set the cookie value.
+- Happening of the attack very rare but have vulnerability allow access based on the property application subdomain.
