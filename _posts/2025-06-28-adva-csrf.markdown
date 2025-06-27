@@ -1,0 +1,27 @@
+---
+layout: post
+title: "Advanced CSRF- How to Bypass SameSite Cookie Protections"
+date: 2025-06-28 20:00:00 +12:49
+comments: true
+excerpt: "SameSite cookies are a key browser defense against CSRF attacks, but they’re not foolproof. This post dives into how attackers can bypass SameSite restrictions using real-world techniques and browser behaviors."
+---
+
+Samesite is the browser security mechanism that determine when a website's cookies are  included in the requesting originating from another websites. Since 2021 the chrome makes the lax as the default for samesite restrictions.
+
+#### What is the site in context of samesite
+
+A site is defined as the top level domain (TLD), usually something like `.net` or .`com`. When determining whether a request is same-site or not, the URL schema also takes into consideration. This means that a link from `http://mydomain.com` to `https://mydomain.com` considered or treated as the cross-site by most of the browsers.
+
+<img src="/assets/websecurity/site.png" alt="site"/>
+
+#### Site vs Origin
+
+The difference between the site and the origin is their scope. The site describes multiple domains whereas the origin only describes one. It not use these words interchangeably which makes serious security implications.
+
+- So when we talk about the like site it is the combination of scheme, TLD and TLD+1. so it will have multiple subdomains.
+- Whereas the origin the combination of ip and port which makes unique and single one.
+
+<img src="/assets//websecurity/sitevsorigin.png"   alt="Origin vs Site"/>
+
+## Understanding the working of SameSite
+
