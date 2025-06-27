@@ -12,7 +12,7 @@ Samesite is the browser security mechanism that determine when a website's cooki
 
 A site is defined as the top level domain (TLD), usually something like `.net` or .`com`. When determining whether a request is same-site or not, the URL schema also takes into consideration. This means that a link from `http://mydomain.com` to `https://mydomain.com` considered or treated as the cross-site by most of the browsers.
 
-<img src="/assets/websecurity/site.png" alt="site"/>
+<img src="{{ site.baseurl }}/assets/websecurity/site.png" alt="site"/>
 
 #### Site vs Origin
 
@@ -21,7 +21,7 @@ The difference between the site and the origin is their scope. The site describe
 - So when we talk about the like site it is the combination of scheme, TLD and TLD+1. so it will have multiple subdomains.
 - Whereas the origin the combination of ip and port which makes unique and single one.
 
-<img src="/assets//websecurity/sitevsorigin.png"   alt="Origin vs Site"/>
+<img src="{{ site.baseurl }}/assets//websecurity/sitevsorigin.png"   alt="Origin vs Site"/>
 
 ## Understanding the working of SameSite
 
