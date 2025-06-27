@@ -5,8 +5,8 @@
     <description>Technical explorations in web development, backend systems, AI/ML, and developer tooling — built by a developer, for developers.</description>
     <link>http://sajjapremsai.github.io/blogs/</link>
     <atom:link href="http://sajjapremsai.github.io/blogs/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 27 Jun 2025 09:50:16 +0000</pubDate>
-    <lastBuildDate>Fri, 27 Jun 2025 09:50:16 +0000</lastBuildDate>
+    <pubDate>Fri, 27 Jun 2025 18:58:21 +0000</pubDate>
+    <lastBuildDate>Fri, 27 Jun 2025 18:58:21 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -157,6 +157,13 @@ email=trumpwithb2bommer.com
   &lt;li&gt;However, setting a cookie with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpOnly&lt;/code&gt; flag means JavaScript cannot access it. This helps mitigate the risk of token theft via XSS. But it will happens when the sites under same domain&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h4 id=&quot;csrf-token-is-simply-duplicated-in-a-cookie&quot;&gt;CSRF token is simply duplicated in a cookie&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;So in this the token is generated in the server and send to the user as cookie and also in the form in hidden. So when we requested the server just check the cookie and form csrf token is same or not.&lt;/li&gt;
+  &lt;li&gt;If not reject the request. Here is the catch if the attacker get his csrf token and placed in the cookie and form. The changing of cookie value only happens when cookie has property &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sameOrigin&lt;/code&gt; as none or the website is in subdomain. Which makes easy to set the cookie value.&lt;/li&gt;
+  &lt;li&gt;Happening of the attack very rare but have vulnerability allow access based on the property application subdomain.&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         <pubDate>Fri, 27 Jun 2025 07:11:00 +0000</pubDate>
         <link>http://sajjapremsai.github.io/blogs/2025/06/27/csrf-attacks/</link>

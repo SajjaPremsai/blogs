@@ -223,6 +223,13 @@ email=trumpwithb2bommer.com
   <li>However, setting a cookie with the <code class="language-plaintext highlighter-rouge">HttpOnly</code> flag means JavaScript cannot access it. This helps mitigate the risk of token theft via XSS. But it will happens when the sites under same domain</li>
 </ul>
 
+<h4 id="csrf-token-is-simply-duplicated-in-a-cookie">CSRF token is simply duplicated in a cookie</h4>
+
+<ul>
+  <li>So in this the token is generated in the server and send to the user as cookie and also in the form in hidden. So when we requested the server just check the cookie and form csrf token is same or not.</li>
+  <li>If not reject the request. Here is the catch if the attacker get his csrf token and placed in the cookie and form. The changing of cookie value only happens when cookie has property <code class="language-plaintext highlighter-rouge">sameOrigin</code> as none or the website is in subdomain. Which makes easy to set the cookie value.</li>
+  <li>Happening of the attack very rare but have vulnerability allow access based on the property application subdomain.</li>
+</ul>
 
   </article>
 
