@@ -12,7 +12,7 @@ Samesite is the browser security mechanism that determine when a website's cooki
 
 A site is defined as the top level domain (TLD), usually something like `.net` or .`com`. When determining whether a request is same-site or not, the URL schema also takes into consideration. This means that a link from `http://mydomain.com` to `https://mydomain.com` considered or treated as the cross-site by most of the browsers.
 
-<img src="{{ site.baseurl }}/assets/websecurity/site.png" alt="site"/>
+<img src="{{ site.baseurl }}/assets/websecurity/site.png" alt="site" width="100" height="100" />
 
 #### Site vs Origin
 
