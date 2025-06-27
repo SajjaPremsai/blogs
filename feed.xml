@@ -5,8 +5,8 @@
     <description>Technical explorations in web development, backend systems, AI/ML, and developer tooling — built by a developer, for developers.</description>
     <link>http://sajjapremsai.github.io/blogs/</link>
     <atom:link href="http://sajjapremsai.github.io/blogs/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 27 Jun 2025 19:38:09 +0000</pubDate>
-    <lastBuildDate>Fri, 27 Jun 2025 19:38:09 +0000</lastBuildDate>
+    <pubDate>Fri, 27 Jun 2025 19:39:58 +0000</pubDate>
+    <lastBuildDate>Fri, 27 Jun 2025 19:39:58 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -17,7 +17,7 @@
 
 &lt;p&gt;A site is defined as the top level domain (TLD), usually something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.net&lt;/code&gt; or .&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;com&lt;/code&gt;. When determining whether a request is same-site or not, the URL schema also takes into consideration. This means that a link from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://mydomain.com&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://mydomain.com&lt;/code&gt; considered or treated as the cross-site by most of the browsers.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blogs/assets/websecurity/site.png&quot; alt=&quot;site&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blogs/assets/websecurity/site.png&quot; alt=&quot;site&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;site-vs-origin&quot;&gt;Site vs Origin&lt;/h4&gt;
 
