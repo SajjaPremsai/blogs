@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Advanced CSRF: How to Bypass SameSite Cookie Protections"
-date: 2025-06-28 00:30:00 +10:30
+date: 2025-06-28 10:30:00 +05:30
 comments: true
 excerpt: "SameSite cookies are a key browser defense against CSRF attacks, but they’re not foolproof. This post dives into how attackers can bypass SameSite restrictions using real-world techniques and browser behaviors."
 ---
@@ -53,6 +53,7 @@ Set-Cookie: session=0F8tgdOhi9ynR1M9wa3ODa; SameSite=Strict
 - If the cookie is set to the `strict` the browser will not allow to add the cookies to the cross site requests. Simply the browser allows the cookies which are related to the site which is present in the address bar.
 - This is recommended that when we performing some actions like accessing pages or request where we need to allow the authenticated users only.
 - Although it is the most secure option but it may effects the user experience when their is a cross site request is desirable.
+
 #### SameSite=Lax
 
 - `Lax` is another restriction level where browser add the cookie to the cross site requests but that request must be meet the following criteria 
