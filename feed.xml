@@ -5,8 +5,8 @@
     <description>Technical explorations in web development, backend systems, AI/ML, and developer tooling — built by a developer, for developers.</description>
     <link>http://sajjapremsai.github.io/blogs/</link>
     <atom:link href="http://sajjapremsai.github.io/blogs/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 28 Jun 2025 05:00:10 +0000</pubDate>
-    <lastBuildDate>Sat, 28 Jun 2025 05:00:10 +0000</lastBuildDate>
+    <pubDate>Sat, 28 Jun 2025 18:24:55 +0000</pubDate>
+    <lastBuildDate>Sat, 28 Jun 2025 18:24:55 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -36,8 +36,73 @@
 
 &lt;h2 id=&quot;understanding-the-working-of-samesite&quot;&gt;Understanding the working of SameSite&lt;/h2&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;Usually before the SameSite mechanism is introduced the browsers send the cookies along with the request to the domain that issued them. Even the request was send or triggered by a third party malicious website. This makes the user vulnerable to csrf attacks.&lt;/li&gt;
+  &lt;li&gt;SameSite works by enabling the browsers and websites owners limiting  the cross requesting if any should only include the specific cookies which makes reduce the user’s exposure to the csrf attacks.&lt;/li&gt;
+  &lt;li&gt;Even the users open the malicious code and make trigger to the malicious code it will need a authentication session cookie to be included to the request otherwise the request will be rejected by the server.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;In SameSite restriction they are three level of restriction:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Strict&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lax&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;None&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;To configure the restriction level of the cookie it must be done by developer manually while setting the cookie to the response.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Set-Cookie: session=0F8tgdOhi9ynR1M9wa3ODa; SameSite=Strict
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Although it offers some protection against the CSRF attacks, but it doesn’t gives guarantee it always depends on the developer written code.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;samesitestrict&quot;&gt;SameSite=Strict&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;If the cookie is set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;strict&lt;/code&gt; the browser will not allow to add the cookies to the cross site requests. Simply the browser allows the cookies which are related to the site which is present in the address bar.&lt;/li&gt;
+  &lt;li&gt;This is recommended that when we performing some actions like accessing pages or request where we need to allow the authenticated users only.&lt;/li&gt;
+  &lt;li&gt;Although it is the most secure option but it may effects the user experience when their is a cross site request is desirable.
+    &lt;h4 id=&quot;samesitelax&quot;&gt;SameSite=Lax&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lax&lt;/code&gt; is another restriction level where browser add the cookie to the cross site requests but that request must be meet the following criteria&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;The request method must be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET&lt;/code&gt;. The browser don’t add the cookie to the cross site requests where their requested method is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST&lt;/code&gt; because usually we use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST&lt;/code&gt; method to modify or insert data.&lt;/li&gt;
+      &lt;li&gt;The request resulted from a top level navigation by the user, such as clicking on link. Which means the request must be initiated by the user not by background requests like scripts, iframe..etc&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;samesitenone&quot;&gt;SameSite=None&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Making the restriction none remove all these restriction which means the browser add the cookies to the request which run in the background by the third party websites.&lt;/li&gt;
+  &lt;li&gt;Expect chrome most of the browsers the default samesite restriction is none.&lt;/li&gt;
+  &lt;li&gt;There is legitimate reason for it most websites uses the third party scripts need to be run like the website depends on the third party to do some action. Like OAuth we need the add the cookie to the script inside the browser to login. Even thought the cookie is encrypted and added the bearer it still makes the unique identifies if the website vulnerable their is change exposing to csrf attacks.&lt;/li&gt;
+  &lt;li&gt;Its better to add the secure to the cookies when we are using SameSite=None makes the cookie to be encrypted over HTTPS.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;by-passing-the-samesite-lax-restriction-using-get-method&quot;&gt;By passing the SameSite Lax restriction using GET method&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In practice the server doesn’t care about whether they receive GET or POST request for given endpoint even those they are expecting the form submission. If they are using the Lax as the security restriction by the browser default restriction. Which allows the csrf attacks by the bypassing the request as the GET.&lt;/li&gt;
+  &lt;li&gt;And as we know the rule 2 where the request should be top level navigation the following makes to satisfies the rule 2.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-HTML&quot;&gt;&amp;lt;script&amp;gt;
+documet.location = &quot;https://somewebsite.com/account/transfer-payment?recipient=hacker&amp;amp;amount=1000000&quot;
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Even the request is restricted by the method there are some frameworks allows us by overriding the method by using the parameter value like this &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_method=GET&lt;/code&gt; which makes even the method is GET it will allow by the request thought that is POST.&lt;/li&gt;
+&lt;/ul&gt;
 </description>
-        <pubDate>Fri, 27 Jun 2025 19:00:00 +0000</pubDate>
+        <pubDate>Fri, 27 Jun 2025 14:00:00 +0000</pubDate>
         <link>http://sajjapremsai.github.io/blogs/2025/06/27/adva-csrf/</link>
         <guid isPermaLink="true">http://sajjapremsai.github.io/blogs/2025/06/27/adva-csrf/</guid>
         

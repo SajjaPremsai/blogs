@@ -102,6 +102,71 @@
 
 <h2 id="understanding-the-working-of-samesite">Understanding the working of SameSite</h2>
 
+<ul>
+  <li>Usually before the SameSite mechanism is introduced the browsers send the cookies along with the request to the domain that issued them. Even the request was send or triggered by a third party malicious website. This makes the user vulnerable to csrf attacks.</li>
+  <li>SameSite works by enabling the browsers and websites owners limiting  the cross requesting if any should only include the specific cookies which makes reduce the user’s exposure to the csrf attacks.</li>
+  <li>Even the users open the malicious code and make trigger to the malicious code it will need a authentication session cookie to be included to the request otherwise the request will be rejected by the server.</li>
+  <li>
+    <p>In SameSite restriction they are three level of restriction:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Strict</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Lax</code></li>
+      <li><code class="language-plaintext highlighter-rouge">None</code></li>
+    </ul>
+  </li>
+  <li>To configure the restriction level of the cookie it must be done by developer manually while setting the cookie to the response.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set-Cookie: session=0F8tgdOhi9ynR1M9wa3ODa; SameSite=Strict
+</code></pre></div></div>
+
+<ul>
+  <li>Although it offers some protection against the CSRF attacks, but it doesn’t gives guarantee it always depends on the developer written code.</li>
+</ul>
+
+<h4 id="samesitestrict">SameSite=Strict</h4>
+
+<ul>
+  <li>If the cookie is set to the <code class="language-plaintext highlighter-rouge">strict</code> the browser will not allow to add the cookies to the cross site requests. Simply the browser allows the cookies which are related to the site which is present in the address bar.</li>
+  <li>This is recommended that when we performing some actions like accessing pages or request where we need to allow the authenticated users only.</li>
+  <li>Although it is the most secure option but it may effects the user experience when their is a cross site request is desirable.
+    <h4 id="samesitelax">SameSite=Lax</h4>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Lax</code> is another restriction level where browser add the cookie to the cross site requests but that request must be meet the following criteria</p>
+
+    <ul>
+      <li>The request method must be <code class="language-plaintext highlighter-rouge">GET</code>. The browser don’t add the cookie to the cross site requests where their requested method is <code class="language-plaintext highlighter-rouge">POST</code> because usually we use the <code class="language-plaintext highlighter-rouge">POST</code> method to modify or insert data.</li>
+      <li>The request resulted from a top level navigation by the user, such as clicking on link. Which means the request must be initiated by the user not by background requests like scripts, iframe..etc</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="samesitenone">SameSite=None</h4>
+
+<ul>
+  <li>Making the restriction none remove all these restriction which means the browser add the cookies to the request which run in the background by the third party websites.</li>
+  <li>Expect chrome most of the browsers the default samesite restriction is none.</li>
+  <li>There is legitimate reason for it most websites uses the third party scripts need to be run like the website depends on the third party to do some action. Like OAuth we need the add the cookie to the script inside the browser to login. Even thought the cookie is encrypted and added the bearer it still makes the unique identifies if the website vulnerable their is change exposing to csrf attacks.</li>
+  <li>Its better to add the secure to the cookies when we are using SameSite=None makes the cookie to be encrypted over HTTPS.</li>
+</ul>
+
+<h2 id="by-passing-the-samesite-lax-restriction-using-get-method">By passing the SameSite Lax restriction using GET method</h2>
+
+<ul>
+  <li>In practice the server doesn’t care about whether they receive GET or POST request for given endpoint even those they are expecting the form submission. If they are using the Lax as the security restriction by the browser default restriction. Which allows the csrf attacks by the bypassing the request as the GET.</li>
+  <li>And as we know the rule 2 where the request should be top level navigation the following makes to satisfies the rule 2.</li>
+</ul>
+
+<pre><code class="language-HTML">&lt;script&gt;
+documet.location = "https://somewebsite.com/account/transfer-payment?recipient=hacker&amp;amount=1000000"
+&lt;/script&gt;
+</code></pre>
+
+<ul>
+  <li>Even the request is restricted by the method there are some frameworks allows us by overriding the method by using the parameter value like this <code class="language-plaintext highlighter-rouge">_method=GET</code> which makes even the method is GET it will allow by the request thought that is POST.</li>
+</ul>
 
   </article>
 
