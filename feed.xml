@@ -5,8 +5,8 @@
     <description>Technical explorations in web development, backend systems, AI/ML, and developer tooling — built by a developer, for developers.</description>
     <link>http://sajjapremsai.github.io/blogs/</link>
     <atom:link href="http://sajjapremsai.github.io/blogs/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 28 Jun 2025 18:24:55 +0000</pubDate>
-    <lastBuildDate>Sat, 28 Jun 2025 18:24:55 +0000</lastBuildDate>
+    <pubDate>Sat, 28 Jun 2025 18:29:13 +0000</pubDate>
+    <lastBuildDate>Sat, 28 Jun 2025 18:29:13 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -64,9 +64,12 @@
 &lt;ul&gt;
   &lt;li&gt;If the cookie is set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;strict&lt;/code&gt; the browser will not allow to add the cookies to the cross site requests. Simply the browser allows the cookies which are related to the site which is present in the address bar.&lt;/li&gt;
   &lt;li&gt;This is recommended that when we performing some actions like accessing pages or request where we need to allow the authenticated users only.&lt;/li&gt;
-  &lt;li&gt;Although it is the most secure option but it may effects the user experience when their is a cross site request is desirable.
-    &lt;h4 id=&quot;samesitelax&quot;&gt;SameSite=Lax&lt;/h4&gt;
-  &lt;/li&gt;
+  &lt;li&gt;Although it is the most secure option but it may effects the user experience when their is a cross site request is desirable.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;samesitelax&quot;&gt;SameSite=Lax&lt;/h4&gt;
+
+&lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lax&lt;/code&gt; is another restriction level where browser add the cookie to the cross site requests but that request must be meet the following criteria&lt;/p&gt;
 
@@ -102,9 +105,9 @@ documet.location = &quot;https://somewebsite.com/account/transfer-payment?recipi
   &lt;li&gt;Even the request is restricted by the method there are some frameworks allows us by overriding the method by using the parameter value like this &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_method=GET&lt;/code&gt; which makes even the method is GET it will allow by the request thought that is POST.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Fri, 27 Jun 2025 14:00:00 +0000</pubDate>
-        <link>http://sajjapremsai.github.io/blogs/2025/06/27/adva-csrf/</link>
-        <guid isPermaLink="true">http://sajjapremsai.github.io/blogs/2025/06/27/adva-csrf/</guid>
+        <pubDate>Sat, 28 Jun 2025 05:00:00 +0000</pubDate>
+        <link>http://sajjapremsai.github.io/blogs/2025/06/28/adva-csrf/</link>
+        <guid isPermaLink="true">http://sajjapremsai.github.io/blogs/2025/06/28/adva-csrf/</guid>
         
         
       </item>
