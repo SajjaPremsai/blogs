@@ -5,8 +5,8 @@
     <description>Technical explorations in web development, backend systems, AI/ML, and developer tooling — built by a developer, for developers.</description>
     <link>http://sajjapremsai.github.io/blogs/</link>
     <atom:link href="http://sajjapremsai.github.io/blogs/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 28 Jun 2025 18:29:13 +0000</pubDate>
-    <lastBuildDate>Sat, 28 Jun 2025 18:29:13 +0000</lastBuildDate>
+    <pubDate>Mon, 30 Jun 2025 16:29:56 +0000</pubDate>
+    <lastBuildDate>Mon, 30 Jun 2025 16:29:56 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -17,9 +17,7 @@
 
 &lt;p&gt;A site is defined as the top level domain (TLD), usually something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.net&lt;/code&gt; or .&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;com&lt;/code&gt;. When determining whether a request is same-site or not, the URL schema also takes into consideration. This means that a link from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://mydomain.com&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://mydomain.com&lt;/code&gt; considered or treated as the cross-site by most of the browsers.&lt;/p&gt;
 
-&lt;div style=&quot;max-width: 100%; overflow-x: auto;&quot;&gt;
-  &lt;img src=&quot;/blogs/assets/websecurity/site.png&quot; alt=&quot;site&quot; style=&quot;width: 100%; height: auto;&quot; /&gt;
-&lt;/div&gt;
+&lt;p&gt;![[Pasted image 20250628001240.png]]&lt;/p&gt;
 
 &lt;h4 id=&quot;site-vs-origin&quot;&gt;Site vs Origin&lt;/h4&gt;
 
@@ -30,9 +28,7 @@
   &lt;li&gt;Whereas the origin the combination of ip and port which makes unique and single one.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div style=&quot;max-width: 100%; overflow-x: auto;&quot;&gt;
-  &lt;img src=&quot;/blogs/assets/websecurity/sitevsorigin.png&quot; alt=&quot;Origin vs Site&quot; style=&quot;width: 100%; height: auto;&quot; /&gt;
-&lt;/div&gt;
+&lt;p&gt;![[Pasted image 20250628001815.png]]&lt;/p&gt;
 
 &lt;h2 id=&quot;understanding-the-working-of-samesite&quot;&gt;Understanding the working of SameSite&lt;/h2&gt;
 
@@ -64,12 +60,9 @@
 &lt;ul&gt;
   &lt;li&gt;If the cookie is set to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;strict&lt;/code&gt; the browser will not allow to add the cookies to the cross site requests. Simply the browser allows the cookies which are related to the site which is present in the address bar.&lt;/li&gt;
   &lt;li&gt;This is recommended that when we performing some actions like accessing pages or request where we need to allow the authenticated users only.&lt;/li&gt;
-  &lt;li&gt;Although it is the most secure option but it may effects the user experience when their is a cross site request is desirable.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;samesitelax&quot;&gt;SameSite=Lax&lt;/h4&gt;
-
-&lt;ul&gt;
+  &lt;li&gt;Although it is the most secure option but it may effects the user experience when their is a cross site request is desirable.
+    &lt;h4 id=&quot;samesitelax&quot;&gt;SameSite=Lax&lt;/h4&gt;
+  &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lax&lt;/code&gt; is another restriction level where browser add the cookie to the cross site requests but that request must be meet the following criteria&lt;/p&gt;
 
@@ -89,20 +82,34 @@
   &lt;li&gt;Its better to add the secure to the cookies when we are using SameSite=None makes the cookie to be encrypted over HTTPS.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;by-passing-the-samesite-lax-restriction-using-get-method&quot;&gt;By passing the SameSite Lax restriction using GET method&lt;/h2&gt;
+&lt;h2 id=&quot;bypassing-the-samesite-lax-restriction-using-get-method&quot;&gt;Bypassing the SameSite Lax restriction using GET method&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;In practice the server doesn’t care about whether they receive GET or POST request for given endpoint even those they are expecting the form submission. If they are using the Lax as the security restriction by the browser default restriction. Which allows the csrf attacks by the bypassing the request as the GET.&lt;/li&gt;
+  &lt;li&gt;In practice, many poorly designed servers don’t strictly enforce the expected HTTP method. Even if an endpoint is intended for POST form submissions, the server may still accept a GET request if not properly validated.&lt;/li&gt;
+  &lt;li&gt;When a cookie is set with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SameSite=Lax&lt;/code&gt; (which is the default in most browsers), the browser allows &lt;strong&gt;top-level GET navigation&lt;/strong&gt; to include the cookie. This means a CSRF attack can still succeed if the targeted endpoint accepts GET requests.&lt;/li&gt;
   &lt;li&gt;And as we know the rule 2 where the request should be top level navigation the following makes to satisfies the rule 2.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-HTML&quot;&gt;&amp;lt;script&amp;gt;
-documet.location = &quot;https://somewebsite.com/account/transfer-payment?recipient=hacker&amp;amp;amount=1000000&quot;
+document.location = &quot;https://somewebsite.com/account/transfer-payment?recipient=hacker&amp;amp;amount=1000000&quot;
 &amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Even the request is restricted by the method there are some frameworks allows us by overriding the method by using the parameter value like this &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_method=GET&lt;/code&gt; which makes even the method is GET it will allow by the request thought that is POST.&lt;/li&gt;
+  &lt;li&gt;Some web frameworks (like Ruby on Rails, Laravel, Express, etc.) allow overriding the HTTP method using parameters like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_method=DELETE&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_method=POST&lt;/code&gt;. If the server doesn’t validate this properly, an attacker can manipulate a GET request to behave like a POST.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;bypassing-the-samesite-strict-using-the-third-party-gadgets&quot;&gt;Bypassing the SameSite Strict using the Third party gadgets&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;If a cookie set with the SameSite=Strict attribute browser won’t allow any type of cross site requests.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redirect gadgets (especially client-side) allow attackers to bypass &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SameSite=Strict&lt;/code&gt; by triggering a &lt;strong&gt;second, same-site request&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;A &lt;strong&gt;client-side redirect&lt;/strong&gt; (e.g., using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;window.location.href&lt;/code&gt;) is interpreted by the browser as a &lt;strong&gt;new, first-party navigation&lt;/strong&gt;, so &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SameSite=Strict&lt;/code&gt; cookies &lt;strong&gt;are included&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;However, a &lt;strong&gt;server-side redirect&lt;/strong&gt; (via HTTP 302) still causes a &lt;strong&gt;cross-site chain&lt;/strong&gt;, and depending on the browser’s implementation, &lt;strong&gt;cookies may or may not be sent&lt;/strong&gt;. So, client-side redirect gadgets are more reliably effective for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SameSite=Strict&lt;/code&gt; bypass.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Sat, 28 Jun 2025 05:00:00 +0000</pubDate>
