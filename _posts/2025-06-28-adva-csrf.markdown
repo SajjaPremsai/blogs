@@ -12,10 +12,7 @@ Samesite is the browser security mechanism that determine when a website's cooki
 
 A site is defined as the top level domain (TLD), usually something like `.net` or .`com`. When determining whether a request is same-site or not, the URL schema also takes into consideration. This means that a link from `http://mydomain.com` to `https://mydomain.com` considered or treated as the cross-site by most of the browsers.
 
-<div style="max-width: 100%; overflow-x: auto;">
-  <img src="{{ site.baseurl }}/assets/websecurity/site.png" alt="site" style="width: 100%; height: auto;" />
-</div>
-
+![[Pasted image 20250628001240.png]]
 
 #### Site vs Origin
 
@@ -24,10 +21,7 @@ The difference between the site and the origin is their scope. The site describe
 - So when we talk about the like site it is the combination of scheme, TLD and TLD+1. so it will have multiple subdomains.
 - Whereas the origin the combination of ip and port which makes unique and single one.
 
-<div style="max-width: 100%; overflow-x: auto;">
-  <img src="{{ site.baseurl }}/assets/websecurity/sitevsorigin.png" alt="Origin vs Site" style="width: 100%; height: auto;" />
-</div>
-
+![[Pasted image 20250628001815.png]]
 
 ## Understanding the working of SameSite
 
@@ -53,7 +47,6 @@ Set-Cookie: session=0F8tgdOhi9ynR1M9wa3ODa; SameSite=Strict
 - If the cookie is set to the `strict` the browser will not allow to add the cookies to the cross site requests. Simply the browser allows the cookies which are related to the site which is present in the address bar.
 - This is recommended that when we performing some actions like accessing pages or request where we need to allow the authenticated users only.
 - Although it is the most secure option but it may effects the user experience when their is a cross site request is desirable.
-
 #### SameSite=Lax
 
 - `Lax` is another restriction level where browser add the cookie to the cross site requests but that request must be meet the following criteria 
@@ -68,15 +61,25 @@ Set-Cookie: session=0F8tgdOhi9ynR1M9wa3ODa; SameSite=Strict
 - There is legitimate reason for it most websites uses the third party scripts need to be run like the website depends on the third party to do some action. Like OAuth we need the add the cookie to the script inside the browser to login. Even thought the cookie is encrypted and added the bearer it still makes the unique identifies if the website vulnerable their is change exposing to csrf attacks. 
 - Its better to add the secure to the cookies when we are using SameSite=None makes the cookie to be encrypted over HTTPS.
 
-## By passing the SameSite Lax restriction using GET method
+## Bypassing the SameSite Lax restriction using GET method
 
-- In practice the server doesn't care about whether they receive GET or POST request for given endpoint even those they are expecting the form submission. If they are using the Lax as the security restriction by the browser default restriction. Which allows the csrf attacks by the bypassing the request as the GET.
+- In practice, many poorly designed servers don't strictly enforce the expected HTTP method. Even if an endpoint is intended for POST form submissions, the server may still accept a GET request if not properly validated.
+- When a cookie is set with `SameSite=Lax` (which is the default in most browsers), the browser allows **top-level GET navigation** to include the cookie. This means a CSRF attack can still succeed if the targeted endpoint accepts GET requests.
 - And as we know the rule 2 where the request should be top level navigation the following makes to satisfies the rule 2.
 
 ``` HTML
 <script>
-documet.location = "https://somewebsite.com/account/transfer-payment?recipient=hacker&amount=1000000"
+document.location = "https://somewebsite.com/account/transfer-payment?recipient=hacker&amount=1000000"
 </script>
 ```
 
-- Even the request is restricted by the method there are some frameworks allows us by overriding the method by using the parameter value like this `_method=GET` which makes even the method is GET it will allow by the request thought that is POST.
+-  Some web frameworks (like Ruby on Rails, Laravel, Express, etc.) allow overriding the HTTP method using parameters like `_method=DELETE` or `_method=POST`. If the server doesn’t validate this properly, an attacker can manipulate a GET request to behave like a POST.
+
+## Bypassing the SameSite Strict using the Third party gadgets
+
+- If a cookie set with the SameSite=Strict attribute browser won't allow any type of cross site requests. 
+- Redirect gadgets (especially client-side) allow attackers to bypass `SameSite=Strict` by triggering a **second, same-site request**.
+
+- A **client-side redirect** (e.g., using `window.location.href`) is interpreted by the browser as a **new, first-party navigation**, so `SameSite=Strict` cookies **are included**.
+
+- However, a **server-side redirect** (via HTTP 302) still causes a **cross-site chain**, and depending on the browser’s implementation, **cookies may or may not be sent**. So, client-side redirect gadgets are more reliably effective for `SameSite=Strict` bypass.
