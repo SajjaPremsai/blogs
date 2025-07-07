@@ -6,9 +6,6 @@ comments: true
 excerpt: "A deep dive into how load balancers distribute traffic, why they're essential for scalability, and the key algorithms used like Hashing and Consistent Hashing."
 ---
 
-
-# Understanding Load Balancers: Handling Traffic the Smart Way
-
 Load Balancer — a term we often hear when talking about systems handling heavy traffic. But what exactly is it? Why is it so important? And how does it help in distributing loads across servers?
 
 In this blog, we’ll explore:
