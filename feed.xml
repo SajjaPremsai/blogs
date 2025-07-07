@@ -5,15 +5,13 @@
     <description>Technical explorations in web development, backend systems, AI/ML, and developer tooling — built by a developer, for developers.</description>
     <link>http://sajjapremsai.github.io/blogs/</link>
     <atom:link href="http://sajjapremsai.github.io/blogs/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 07 Jul 2025 18:19:08 +0000</pubDate>
-    <lastBuildDate>Mon, 07 Jul 2025 18:19:08 +0000</lastBuildDate>
+    <pubDate>Mon, 07 Jul 2025 18:21:00 +0000</pubDate>
+    <lastBuildDate>Mon, 07 Jul 2025 18:21:00 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
         <title> Understanding Load Balancers: Handling Traffic the Smart Way</title>
-        <description>&lt;h1 id=&quot;understanding-load-balancers-handling-traffic-the-smart-way&quot;&gt;Understanding Load Balancers: Handling Traffic the Smart Way&lt;/h1&gt;
-
-&lt;p&gt;Load Balancer — a term we often hear when talking about systems handling heavy traffic. But what exactly is it? Why is it so important? And how does it help in distributing loads across servers?&lt;/p&gt;
+        <description>&lt;p&gt;Load Balancer — a term we often hear when talking about systems handling heavy traffic. But what exactly is it? Why is it so important? And how does it help in distributing loads across servers?&lt;/p&gt;
 
 &lt;p&gt;In this blog, we’ll explore:&lt;/p&gt;
 &lt;ul&gt;
